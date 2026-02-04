@@ -1,12 +1,237 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Task Manager</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager App</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .task-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 5px solid #667eea;
+            text-align: left;
+        }
+        
+        .task-title {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .task-title::before {
+            content: "📋";
+            font-size: 1.2rem;
+        }
+        
+        .task-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .task-meta {
+            display: flex;
+            gap: 15px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        /* TASK LIST SECTION - Add this */
+        .task-list {
+            background: #f0f7ff;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .task-list h3 {
+            color: #1976D2;
+            margin-bottom: 10px;
+        }
+        .task-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .task-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        /* END TASK LIST */
+        
+        .complete-btn {
+            background: linear-gradient(to right, #2196F3, #1976D2); /* CHANGED TO BLUE */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto 25px;
+            width: 100%;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .complete-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(33, 150, 243, 0.3);
+        }
+        
+        .complete-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .notification-area {
+            background: #e8f5e9;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 2px dashed #4CAF50;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #message {
+            font-size: 1.1rem;
+            color: #2E7D32;
+            font-weight: 500;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            color: #888;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        
+        .team-name {
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .complete-btn {
+                padding: 12px 25px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Task Manager</h1>
-    <button id="completeBtn">Complete Task</button>
-    <div id="message"></div>
+    <div class="container">
+        <h1>✅ Task Manager</h1>
+        <p class="subtitle">Efficiently manage and complete your tasks</p>
+        
+        <div class="task-card">
+            <div class="task-title">Design Notification System</div>
+            <p class="task-description">
+                Create a notification feature that alerts users when they mark a task as complete. 
+                This includes both visual feedback and alert messages.
+            </p>
+            <div class="task-meta">
+                <span>📅 Due: Today</span>
+                <span>👥 Team: DevOps</span>
+                <span>🏷️ Priority: High</span>
+            </div>
+        </div>
+        
+        <!-- TASK LIST ADDED HERE -->
+        <div class="task-list">
+            <h3>📋 Other Tasks</h3>
+            <ul>
+                <li>✅ Design notification system</li>
+                <li>🔲 Write documentation</li>
+                <li>🔲 Test with team</li>
+            </ul>
+        </div>
+        
+        <button class="complete-btn" id="completeBtn">
+            <span>✓</span> Mark Task as Complete
+        </button>
+        
+        <div class="notification-area">
+            <div id="message">
+                Click the button above to complete the task and see notifications
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Project: Task Manager Simple | <span class="team-name">Team DevOps Alpha</span></p>
+            <p>GitHub Branching Exercise • Notification System Implementation</p>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
