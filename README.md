@@ -1,2 +1,4 @@
-# task-manager-simple
-task manager project
+# Task Manager App
+**Team:** DevOps Team Alpha
+
+Simple notification system for completed tasks.
